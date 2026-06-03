@@ -14,14 +14,8 @@ app.use(cors());
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
-app.get('/ping', async (req, res) => {
-  try {
-    // Lightweight ping — just checks connection
-    await mongoose.connection.db.admin().ping();
-    res.json({ status: 'alive', time: new Date() });
-  } catch (err) {
-    res.status(500).json({ error: 'DB unreachable' });
-  }
+app.get('/ping', (req, res) => {
+  res.status(200).send('ok');
 });
 app.get("/", (req,res) => {
   res.send("Hello World");
